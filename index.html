@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CargoPlayHD | Suscripciones</title>
+<style>
+:root {
+  --bg: #0f0f12; --grad: radial-gradient(circle at 50% 0%, rgba(255,87,34,0.16) 0%, #0f0f12 60%);
+  --nav: rgba(15,15,18,0.94); --card: #18181c; --card-h: #202026;
+  --bdr: rgba(255,255,255,0.08); --pill: #1e1e24; --txt: #ffffff; --mut: #9ca3af;
+  --org: #ff5722; --org-h: #e64a19; --hd-col: #ff9800;
+  --hero-grad: linear-gradient(90deg, #ffffff 0%, #ffd6ba 50%, #ff9e6d 100%);
+}
+body.light-mode {
+  --bg: #f3f4f6; --grad: radial-gradient(circle at 50% 0%, rgba(255,87,34,0.08) 0%, #f3f4f6 65%);
+  --nav: rgba(255,255,255,0.95); --card: #ffffff; --card-h: #fafafa;
+  --bdr: rgba(0,0,0,0.09); --pill: #ffffff; --txt: #111827; --mut: #4b5563;
+  --hero-grad: linear-gradient(90deg, #111827 0%, #b84a14 55%, #ff5722 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+body { background: var(--bg); background-image: var(--grad); color: var(--txt); min-height: 100vh; transition: 0.3s; }
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: var(--nav); border-bottom: 1px solid var(--bdr); position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; font-size: 1.7rem; font-weight: 800; color: var(--txt); text-decoration: none; letter-spacing: -0.5px; }
+.brand-text { display: inline-flex; align-items: baseline; }
+.brand span.hd { color: var(--hd-col); margin-left: 0; }
+.brand-icon { background: var(--org); color: #fff; width: 38px; height: 38px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.nav-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.payment-pill { background: var(--pill); border: 1px solid var(--bdr); padding: 8px 16px; border-radius: 50px; font-size: 0.9rem; }
+.payment-pill span { color: var(--org); font-weight: 700; }
+.theme-toggle { background: var(--pill); color: var(--txt); border: 1px solid var(--org); padding: 8px 16px; border-radius: 50px; font-size: 0.9rem; font-weight: 700; cursor: pointer; }
+.theme-toggle:hover { background: var(--org); color: #fff; }
+.hero { text-align: center; padding: 45px 20px 25px; max-width: 900px; margin: 0 auto; }
+.squid-badge { display: inline-flex; gap: 10px; background: var(--card); border: 1px solid var(--bdr); padding: 6px 18px; border-radius: 50px; color: #ff4081; font-weight: bold; letter-spacing: 3px; margin-bottom: 18px; }
+.hero h1 { font-size: 2.85rem; font-weight: 800; line-height: 1.2; margin-bottom: 14px; background: var(--hero-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; color: #ffd6ba; }
+.hero p { font-size: 1.15rem; color: var(--mut); margin-bottom: 24px; }
+.brand-strip { display: flex; justify-content: center; flex-wrap: wrap; gap: 22px; margin-bottom: 26px; font-size: 0.85rem; font-weight: 800; letter-spacing: 1.5px; color: var(--mut); opacity: 0.8; }
+.filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 35px; }
+.filter-btn { background: var(--card); color: var(--mut); border: 1px solid var(--bdr); padding: 10px 24px; border-radius: 50px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: 0.2s; }
+.filter-btn:hover { border-color: var(--org); color: var(--txt); }
+.filter-btn.active { background: var(--org); color: #fff; border-color: var(--org); font-weight: 700; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px 90px; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+@media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 580px) { .grid { grid-template-columns: 1fr; } .hero h1 { font-size: 2.1rem; } }
+.card { background: var(--card); border: 1px solid var(--bdr); border-radius: 14px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; box-shadow: 0 8px 24px rgba(0,0,0,0.2); transition: 0.25s; }
+.card:hover { transform: translateY(-5px); background: var(--card-h); border-color: rgba(255,87,34,0.5); }
+.card-badges { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.badge-profile { padding: 4px 11px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; text-transform: uppercase; }
+.badge-duration { background: rgba(255,87,34,0.14); color: #ff7043; padding: 4px 11px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(255,87,34,0.3); }
+.card h3 { font-size: 1.45rem; font-weight: 700; margin-bottom: 8px; }
+.card-desc { font-size: 0.94rem; color: var(--mut); line-height: 1.45; margin-bottom: 22px; min-height: 44px; }
+.card-price { font-size: 1.85rem; font-weight: 800; color: var(--org); margin-bottom: 18px; }
+.card-price span { font-size: 0.85rem; font-weight: 600; color: var(--mut); }
+.btn-wa { display: block; width: 100%; background: var(--org); color: #fff; text-align: center; text-decoration: none; padding: 13px; border-radius: 8px; font-weight: 700; font-size: 1rem; transition: 0.2s; }
+.btn-wa:hover { background: var(--org-h); }
+.whatsapp-float { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: #25d366; color: #fff; border-radius: 50%; text-decoration: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(37,211,102,0.45); z-index: 999; transition: transform 0.2s, background 0.2s; }
+.whatsapp-float:hover { transform: scale(1.08); background: #20bd5a; }
+.whatsapp-float svg { width: 32px; height: 32px; fill: #ffffff; }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="#" class="brand"><span class="brand-icon">▶</span><span class="brand-text">CargoPlay<span class="hd">HD</span></span></a>
+  <div class="nav-right">
+    <div class="payment-pill"><span>Nequi / Daviplata:</span> 3104344907 | <span>Llave Bre-B:</span> @3104344907</div>
+    <button class="theme-toggle" id="themeBtn">☀️ Modo Diurno</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="squid-badge">○ △ □</div>
+  <h1>Tus plataformas favoritas al mejor precio</h1>
+  <p>Entrega rápida, soporte garantizado y pagos fáciles por Nequi, Daviplata o Llave Bre-B (@3104344907).</p>
+  <div class="brand-strip">
+    <span>NETFLIX</span><span>PRIME VIDEO</span><span>HBO MAX</span><span>DISNEY+</span><span>SPOTIFY</span><span>YOUTUBE</span><span>CANVA & IA</span>
+  </div>
+  <div class="filters">
+    <button class="filter-btn active" data-category="todos">Todos</button>
+    <button class="filter-btn" data-category="streaming">Streaming</button>
+    <button class="filter-btn" data-category="musica">Música y Vídeo</button>
+    <button class="filter-btn" data-category="diseno">Diseño e IA</button>
+  </div>
+</section>
+
+<main class="container">
+  <div class="grid" id="productGrid"></div>
+</main>
+
+<footer style="text-align: center; padding: 28px 20px; border-top: 1px solid var(--bdr); color: var(--mut); font-size: 0.95rem; line-height: 1.6; background: var(--nav);">
+  <p><strong style="color: var(--txt);">Todos los derechos reservados ®. CargoPlay<span style="color: var(--hd-col);">HD</span></strong></p>
+  <p>Más info: <strong style="color: var(--org);">3104344907</strong>. Estamos para servirte.</p>
+</footer>
+
+<button type="button" id="waFloatBtn" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://w3.org"><path d="M16.004 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.256.588 4.458 1.706 6.398L3.1 28.8l6.582-1.726A12.742 12.742 0 0 0 16.004 28.8c7.06 0 12.8-5.74 12.8-12.8s-5.74-12.8-12.8-12.8zm0 23.438c-2.01 0-3.98-.54-5.702-1.56l-.41-.242-3.906 1.024 1.042-3.808-.266-.424a10.59 10.59 0 0 1-1.624-5.628c0-5.864 4.772-10.636 10.636-10.636 5.864 0 10.636 4.772 10.636 10.636 0 5.864-4.772 10.638-10.636 10.638zm5.834-7.966c-.32-.16-1.892-.934-2.186-1.04-.294-.108-.508-.16-.72.16-.214.32-.826 1.04-1.012 1.254-.186.214-.374.24-.694.08-.32-.16-1.35-.498-2.572-1.588-.95-.848-1.592-1.894-1.778-2.214-.186-.32-.02-.494.14-.654.144-.144.32-.374.48-.56.16-.186.214-.32.32-.534.106-.214.054-.4-.026-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.524-.54-.72-.55l-.614-.01c-.214 0-.56.08-.854.4-.294.32-1.12 1.094-1.12 2.668s1.146 3.094 1.306 3.308c.16.214 2.256 3.444 5.466 4.83.764.33 1.36.526 1.824.674.766.244 1.464.21 2.016.126.614-.092 1.892-.774 2.16-1.52.266-.748.266-1.388.186-1.52-.08-.134-.294-.214-.614-.374z"/></svg>
+</button>
+
+<script>
+const products = [
+  { name: "Netflix", category: "streaming", badge: "1 PERFIL", bg: "#e50914", col: "#fff", dur: "1 Mes", desc: "Calidad 4K Ultra HD • Duración: 1 mes", price: 15000 },
+  { name: "Prime Video", category: "streaming", badge: "1 PERFIL", bg: "#00a8e1", col: "#fff", dur: "1 Mes", desc: "Series, películas y deportes • Duración: 1 mes", price: 10000 },
+  { name: "HBO Max", category: "streaming", badge: "1 PERFIL", bg: "#7b2cbf", col: "#fff", dur: "1 Mes", desc: "Estrenos de cine y series • Duración: 1 mes", price: 10000 },
+  { name: "Disney+ Estándar", category: "streaming", badge: "1 PERFIL", bg: "#113ccf", col: "#fff", dur: "1 Mes", desc: "Disney, Pixar, Marvel y Star Wars • Duración: 1 mes", price: 10000 },
+  { name: "Disney+ Premium + ESPN", category: "streaming", badge: "1 PERFIL", bg: "#0040ff", col: "#fff", dur: "1 Mes", desc: "Todo Disney+ más canales deportivos ESPN en vivo • Duración: 1 mes", price: 15000 },
+  { name: "Paramount+", category: "streaming", badge: "1 PERFIL", bg: "#0064ff", col: "#fff", dur: "1 Mes", desc: "Películas exclusivas y series • Duración: 1 mes", price: 13000 },
+  { name: "Apple TV+", category: "streaming", badge: "1 PERFIL", bg: "#2c2c2e", col: "#fff", dur: "1 Mes", desc: "Series y películas originales en 4K HDR • Duración: 1 mes", price: 10000 },
+  { name: "ViX+", category: "streaming", badge: "1 PERFIL", bg: "#ff5500", col: "#fff", dur: "1 Mes", desc: "Novelas, cine en español y deportes en vivo • Duración: 1 mes", price: 10000 },
+  { name: "Viki Rakuten", category: "streaming", badge: "1 PERFIL", bg: "#0c9bff", col: "#fff", dur: "1 Mes", desc: "Doramas asiáticos y series en HD sin anuncios • Duración: 1 mes", price: 10000 },
+  { name: "Crunchyroll", category: "streaming", badge: "1 PERFIL", bg: "#f47521", col: "#fff", dur: "1 Mes", desc: "Anime sin anuncios y estrenos simulcast • Duración: 1 mes", price: 10000 },
+  { name: "Spotify Premium", category: "musica", badge: "INDIVIDUAL", bg: "#1db954", col: "#000", dur: "1 Mes", desc: "Música sin anuncios y modo offline • Duración: 1 mes", price: 10000 },
+  { name: "Spotify Premium", category: "musica", badge: "INDIVIDUAL", bg: "#1db954", col: "#000", dur: "3 Meses", desc: "Música sin anuncios y modo offline • Duración: 3 meses", price: 25000 },
+  { name: "YouTube Premium", category: "musica", badge: "INDIVIDUAL", bg: "#ff0000", col: "#fff", dur: "1 Mes", desc: "Vídeos sin anuncios + YouTube Music • Duración: 1 mes", price: 10000 },
+  { name: "Canva Pro", category: "diseno", badge: "PRO", bg: "#00c4cc", col: "#000", dur: "1 Mes", desc: "Plantillas premium y herramientas IA • Duración: 1 mes", price: 10000 },
+  { name: "CapCut Pro", category: "diseno", badge: "PRO", bg: "#ffffff", col: "#000", dur: "1 Mes", desc: "Edición profesional sin marca de agua • Duración: 1 mes", price: 18000 },
+  { name: "ChatGPT Plus", category: "diseno", badge: "1 PERFIL", bg: "#10a37f", col: "#fff", dur: "1 Mes", desc: "Acceso prioritario y modelos avanzados • Duración: 1 mes", price: 16000 },
+  { name: "Gemini Pro", category: "diseno", badge: "PRO", bg: "#4285f4", col: "#fff", dur: "1 Mes", desc: "Inteligencia artificial avanzada de Google • Duración: 1 mes", price: 15000 }
+];
+
+function irAWhatsApp(mensaje) {
+  const proto = String.fromCharCode(104, 116, 116, 112, 115, 58, 47, 47);
+  const host = ["api", "whatsapp", "com"].join(".");
+  const form = document.createElement("form");
+  form.method = "GET";
+  form.action = proto + host + "/send";
+  form.target = "_blank";
+
+  const inputPhone = document.createElement("input");
+  inputPhone.type = "hidden";
+  inputPhone.name = "phone";
+  inputPhone.value = "573104344907";
+
+  const inputText = document.createElement("input");
+  inputText.type = "hidden";
+  inputText.name = "text";
+  inputText.value = mensaje;
+
+  form.appendChild(inputPhone);
+  form.appendChild(inputText);
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
+}
+
+document.getElementById("waFloatBtn").addEventListener("click", () => {
+  irAWhatsApp("Hola CargoPlayHD, quisiera más información sobre las suscripciones.");
+});
+
+const grid = document.getElementById("productGrid");
+const filterBtns = document.querySelectorAll(".filter-btn");
+const themeBtn = document.getElementById("themeBtn");
+
+function renderProducts(cat = "todos") {
+  grid.innerHTML = "";
+  const list = cat === "todos" ? products : products.filter(p => p.category === cat);
+  list.forEach(item => {
+    const mensajePedido = "Hola CargoPlayHD, quiero adquirir " + item.name + " (" + item.dur + ") por $" + item.price.toLocaleString('es-CO') + " COP.";
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <div>
+        <div class="card-badges">
+          <span class="badge-profile" style="background:${item.bg};color:${item.col};">${item.badge}</span>
+          <span class="badge-duration">${item.dur}</span>
+        </div>
+        <h3>${item.name}</h3>
+        <p class="card-desc">${item.desc}</p>
+      </div>
+      <div>
+        <div class="card-price">$${item.price.toLocaleString('es-CO')} <span>COP</span></div>
+        <button type="button" class="btn-wa">Pedir por WhatsApp</button>
+      </div>`;
+    card.querySelector(".btn-wa").addEventListener("click", () => irAWhatsApp(mensajePedido));
+    grid.appendChild(card);
+  });
+}
+
+filterBtns.forEach(btn => btn.addEventListener("click", () => {
+  filterBtns.forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderProducts(btn.dataset.category);
+}));
+
+themeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light-mode");
+  themeBtn.textContent = document.body.classList.contains("light-mode") ? "🌙 Modo Nocturno" : "☀️ Modo Diurno";
+});
+
+renderProducts();
+</script>
+</body>
+</html>
