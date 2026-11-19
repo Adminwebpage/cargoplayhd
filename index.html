@@ -119,29 +119,35 @@ const products = [
 ];
 
 function irAWhatsApp(mensaje) {
+  const esMovil = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
   const proto = String.fromCharCode(104, 116, 116, 112, 115, 58, 47, 47);
-  const host = ["api", "whatsapp", "com"].join(".");
+  const sub = esMovil ? "wa.me" : ["web", "whatsapp", "com"].join(".");
+  const path = esMovil ? "/573104344907" : "/send";
+
   const form = document.createElement("form");
   form.method = "GET";
-  form.action = proto + host + "/send";
+  form.action = proto + sub + path;
   form.target = "_blank";
 
-  const inputPhone = document.createElement("input");
-  inputPhone.type = "hidden";
-  inputPhone.name = "phone";
-  inputPhone.value = "573104344907";
+  if (!esMovil) {
+    const inputPhone = document.createElement("input");
+    inputPhone.type = "hidden";
+    inputPhone.name = "phone";
+    inputPhone.value = "573104344907";
+    form.appendChild(inputPhone);
+  }
 
   const inputText = document.createElement("input");
   inputText.type = "hidden";
   inputText.name = "text";
   inputText.value = mensaje;
 
-  form.appendChild(inputPhone);
   form.appendChild(inputText);
   document.body.appendChild(form);
   form.submit();
   document.body.removeChild(form);
 }
+
 
 document.getElementById("waFloatBtn").addEventListener("click", () => {
   irAWhatsApp("Hola CargoPlayHD, quisiera más información sobre las suscripciones.");
